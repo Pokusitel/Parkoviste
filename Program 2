@@ -1,0 +1,80 @@
+int message;
+
+void setup() {
+  Serial.begin(9600); //komunikace
+  pinMode(2, OUTPUT); //LED P1
+  pinMode(3, OUTPUT); //LED P2
+  pinMode(4, OUTPUT); //LED P3
+  pinMode(5, OUTPUT); //LED P4
+  pinMode(6, OUTPUT); //LED P5
+  pinMode(7, OUTPUT); //LED P6
+
+  digitalWrite(2, HIGH);      //LED P1
+  digitalWrite(3, HIGH);     //LED P2
+  digitalWrite(4, HIGH);    //LED P3 
+  digitalWrite(5, HIGH);   //LED P4
+  digitalWrite(6, HIGH);  //LED P5
+  digitalWrite(7, HIGH); //LED P6
+}
+
+void loop() {
+  int mereni = analogRead(A0); //Čtení hodnoty fotorezistoru
+  int soucet;
+  int prumer;
+  for (int i = 0; i < 15; i++); { //provedení 15 měření pro ustálení výsledku
+    mereni = analogRead(A0);
+
+    soucet = + mereni; //uložení výsledku pro následné zrpůměrování
+    prumer = (mereni / 15); //výpočet průmeru z 15 mereni
+    Serial.println(prumer); //odeslani prumeru na seriovou linku
+    delay(1000);
+  }
+
+  if (Serial.available()) { // Kontrola dostupnosti příchozích dat
+    String message = Serial.readString(); // Přečtení příchozí zprávy
+  }
+  
+  if (prumer >= 500) { //pokud je tma zapnou se signalizační LEDky
+   if (message = 1) {
+     digitalWrite(2, HIGH);
+    }
+   else {
+     digitalWrite(2, LOW);
+    }
+
+   if (message = 2) {
+     digitalWrite(3, HIGH);
+    }
+   else {
+     digitalWrite(3, LOW);
+    }
+
+   if (message = 3) {
+     digitalWrite(4, HIGH);
+    }
+   else {
+     digitalWrite(4, LOW);
+    }
+
+   if (message = 4) {
+     digitalWrite(5, HIGH);
+    }
+   else {
+     digitalWrite(5, LOW);
+    }
+
+   if (message = 5) {
+     digitalWrite(6, HIGH);
+    }
+   else {
+     digitalWrite(6, LOW);
+    }
+
+   if (message = 6) {
+     digitalWrite(7, HIGH);
+    }
+   else {
+     digitalWrite(7, LOW);
+    }
+  }
+}
