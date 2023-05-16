@@ -29,14 +29,14 @@ int stav = pinD;
 
 void setup(){
   pinMode(pinD, INPUT); // senzor plynu, pin na sepnutí při nebezpečí
-  pinMode(12, OUTPUT); // nastavení že je jako vstup
+  pinMode(12, OUTPUT); // nastavení, že je jako vstup
   // inicializace LCD
   lcd.begin();
   // zapnutí podsvícení
   lcd.backlight();
  Serial.begin(9600);
 
- pinMode(ir_car1, INPUT);
+ pinMode(ir_car1, INPUT); //inicializace vstupu ze senzorů
  pinMode(ir_car2, INPUT);
  pinMode(ir_car3, INPUT);
  pinMode(ir_car4, INPUT);
@@ -60,7 +60,8 @@ void setup(){
  Read_Sensor();
 
  int total = P1+P2+P3+P4+P5+P6;
- slot = slot-total; 
+ slot = slot-total;
+ slot <= 6; // 
 
  //attachInterrupt(digitalPinToInterrupt(pinD), prerus, RISING);
 }
@@ -96,6 +97,7 @@ void loop(){
   }
   else{
     lcd.print("P1:Volny");
+    Serial.println("1"); //odešle se 1 do druhého arduina
   }
 
  lcd.setCursor (10,1);
@@ -104,6 +106,7 @@ void loop(){
   }
   else{
     lcd.print("P2:Volny");
+    Serial.println("2");
   }
 
  lcd.setCursor (0,2);
@@ -112,6 +115,7 @@ void loop(){
   }
   else{
     lcd.print("P3:Volny");
+    Serial.println("3");
   }
 
  lcd.setCursor (10,2);
@@ -120,6 +124,7 @@ void loop(){
    }
   else{
     lcd.print("P4:Volny");
+    Serial.println("4");
   }
 
  lcd.setCursor (0,3);
@@ -128,6 +133,7 @@ void loop(){
    }
   else{
     lcd.print("P5:Volny");
+    Serial.println("5");
   }
 
  lcd.setCursor (10,3);
@@ -136,6 +142,7 @@ void loop(){
    }
   else{
     lcd.print("P6:Volny");
+    Serial.println("6");
   }    
 
  if(digitalRead (ir_enter) == 0 && flag1==0){
