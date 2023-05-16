@@ -28,8 +28,8 @@ int slot = 6;
 int stav = pinD;
 
 void setup(){
-  pinMode(pinD, INPUT);
-  pinMode(12, OUTPUT);
+  pinMode(pinD, INPUT); // senzor plynu, pin na sepnutí při nebezpečí
+  pinMode(12, OUTPUT); // nastavení že je jako vstup
   // inicializace LCD
   lcd.begin();
   // zapnutí podsvícení
@@ -68,12 +68,16 @@ void setup(){
 void loop(){
   // načtení koncentrace plynů v ppm do proměnné
   //float ppm = senzorMQ.getPPM();
- if(stav = HIGH) {
-   lcd.setCursor (0,0);
+ if(stav = HIGH) { // pokud je stav nebezpečí a přišel signál ze senzoru MQ135, tak se napíše upozornění a sepne relé
+    lcd.setCursor(0, 0);
+   lcd.print("                    ");
+    lcd.setCursor (0,0);
    lcd.print("  NEBEZPECI OTRAVA  "); 
    digitalWrite(12, HIGH);
  }
- else {
+ else { //není stav nebezpečí, žádná změna
+    lcd.setCursor(0, 0);
+   lcd.print("                    ");
    digitalWrite(12, LOW);
    lcd.setCursor (0,0);
    lcd.print("   Volna mista: "); 
