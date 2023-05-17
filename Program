@@ -56,6 +56,13 @@ void setup(){
  pinMode(26, OUTPUT); //LED P5
  pinMode(27, OUTPUT); //LED P6
 
+ digitalWrite(22, LOW);
+ digitalWrite(23, LOW);
+ digitalWrite(24, LOW);
+ digitalWrite(25, LOW);
+ digitalWrite(26, LOW);
+ digitalWrite(27, LOW);
+
  pinMode(ir_enter, INPUT);
  pinMode(ir_back, INPUT);
 
@@ -77,7 +84,7 @@ void setup(){
 
  int total = P1+P2+P3+P4+P5+P6;
  slot = slot-total;
-// slot <= 6; // 
+ slot <= 6; // 
 
  //attachInterrupt(digitalPinToInterrupt(pinD), prerus, RISING);
 }
@@ -90,14 +97,14 @@ void loop(){
    lcd.print("                    ");
     lcd.setCursor (0,0);
    lcd.print("  NEBEZPECI OTRAVA  "); 
-   digitalWrite(12, HIGH);
+   digitalWrite(28, HIGH);
  }
  else { //není stav nebezpečí, žádná změna
     lcd.setCursor(0, 0);
-   lcd.print("                    ");
-   digitalWrite(12, LOW);
-   lcd.setCursor (0,0);
-   lcd.print("   Volna mista: "); 
+   //lcd.print("                    ");
+   digitalWrite(28, LOW);
+   //lcd.setCursor (0,0);
+   //lcd.print("   Volna mista: "); 
  }
 
  Read_Sensor();
@@ -111,92 +118,119 @@ void loop(){
  lcd.print(slot);
  lcd.print("    ");  
 
+ lcd.setCursor (0,1);
+ if(P1==1){
+   lcd.print("P1:Plny ");
+  }
+  else{
+    lcd.print("P1:Volny");
+  }
+
+ lcd.setCursor (10,1);
+ if(P2==1){
+   lcd.print("P2:Plny ");
+  }
+  else{
+    lcd.print("P2:Volny");
+  }
+
+ lcd.setCursor (0,2);
+ if(P3==1){
+   lcd.print("P3:Plny ");
+  }
+  else{
+    lcd.print("P3:Volny");
+  }
+
+ lcd.setCursor (10,2);
+ if(P4==1){
+   lcd.print("P4:Plny ");
+   }
+  else{
+    lcd.print("P4:Volny");
+  }
+
+ lcd.setCursor (0,3);
+ if(P5==1){
+   lcd.print("P5:Plny ");
+   }
+  else{
+    lcd.print("P5:Volny");
+  }
+
+ lcd.setCursor (10,3);
+ if(P6==1){
+   lcd.print("P6:Plny ");
+   }
+  else{
+    lcd.print("P6:Volny");
+  }    
+
  if (buttonStateE == HIGH) { // pokud je tlačítko stisknuto PRVNÍ
-    do {
-      // Akce pro P1
-      lcd.setCursor(0, 0);
-      if (P1 == 1) {
-        lcd.print("P1: Plny ");
-        digitalWrite(22, LOW);
-        break;
-      } else {
-        lcd.print("P1: Volny");
-        digitalWrite(22, HIGH);
-        Serial1.println("1"); // odeslat 1 do druhého Arduina
-      }
-
-      // Akce pro P2
-      lcd.setCursor(10, 1);
-      if (P2 == 1) {
-        lcd.print("P2: Plny ");
-        digitalWrite(23, LOW);
-        break;
-      } else {
-        lcd.print("P2: Volny");
-        digitalWrite(23, HIGH);
-        Serial.println("2");
-      }
-
-      // Akce pro P3
-      lcd.setCursor(0, 2);
-      if (P3 == 1) {
-        lcd.print("P3: Plny ");
-        digitalWrite(24, LOW);
-        break;
-      } else {
-        lcd.print("P3: Volny");
-        digitalWrite(24, HIGH);
-        Serial.println("3");
-      }
-
-      // Aktualizace stavů P1, P2 a P3
-      P1 = digitalRead(ir_car1);
-      P2 = digitalRead(ir_car2);
-      P3 = digitalRead(ir_car3);
-    } while (true);
+    // Akce pro P1
+    if (P1 == 1) {
+      digitalWrite(22, LOW);
+    } 
+    else {
+      digitalWrite(22, HIGH);
+      Serial1.println("1"); // odeslat 1 do druhého Arduina
+    }
+    // Akce pro P2
+    if (P2 == 1) {
+      digitalWrite(23, LOW);
+    } 
+    else {
+      digitalWrite(23, HIGH);
+      Serial.println("2");
+    }
+    // Akce pro P3
+    if (P3 == 1) {
+      lcd.print("P3: Plny ");
+      digitalWrite(24, LOW);
+    } 
+    else {
+      digitalWrite(24, HIGH);
+      Serial.println("3");
+    }
+    // Aktualizace stavů P1, P2 a P3
+     //P1 = digitalRead(ir_car1);
+     // P2 = digitalRead(ir_car2);
+    //P3 = digitalRead(ir_car3);
+    delay(5000);
   }
 
  if (buttonStateN == HIGH) { // pokud je tlačítko stisknuto DRUHÉ
-    do {
-      // Akce pro P4
-      lcd.setCursor(10, 0);
-      if (P4 == 1) {
-        lcd.print("P4: Plny ");
-        digitalWrite(25, LOW);
-        break;
-      } else {
-        lcd.print("P4: Volny");
-        digitalWrite(25, HIGH);
-        Serial.println("4");
-      }
+    // Akce pro P4
+    if (P4 == 1) {
+      lcd.print("P4: Plny ");
+      digitalWrite(25, LOW);
+    } 
+    else {
+      digitalWrite(25, HIGH);
+      Serial.println("4");
+    }
 
-      // Akce pro P5
-      lcd.setCursor(0, 1);
-      if (P5 == 1) {
-        lcd.print("P5: Plny ");
-        digitalWrite(26, LOW);
-        break;
-      } else {
-        lcd.print("P5: Volny");
-        digitalWrite(26, HIGH);
-        Serial.println("5");
-      }
+    // Akce pro P5
+    if (P5 == 1) {
+      digitalWrite(26, LOW);
+    } 
+    else {
+      digitalWrite(26, HIGH);
+      Serial.println("5");
+    }
 
-      // Akce pro P6
-      lcd.setCursor(10, 2);
-      if (P6 == 1) {
-        lcd.print("P6: Plny ");
-        digitalWrite(27, LOW);
-        break;
-      } else {
-        lcd.print("P6: Volny");
-        digitalWrite(27, HIGH);
-        Serial.println("6");
-      }
-      P4 = digitalRead(ir_car4);
-      P5 = digitalRead(ir_car5);
-      P6 = digitalRead(ir_car6);
-    } while (true);
+    // Akce pro P6
+    if (P6 == 1) {
+      digitalWrite(27, LOW);
+    } 
+    else {
+      digitalWrite(27, HIGH);
+      Serial.println("6");
+    }
+      //P4 = digitalRead(ir_car4);
+      //P5 = digitalRead(ir_car5);
+      //P6 = digitalRead(ir_car6);
+    delay(5000);
   }
 
 
