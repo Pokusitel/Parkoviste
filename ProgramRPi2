@@ -21,6 +21,9 @@
         td:last-child {
             text-align: center;
         }
+        .green{
+            background-color: #13f217;
+       }
     </style>
     <meta http-equiv="refresh" content="5">
 </head>
@@ -33,47 +36,47 @@
         </tr>
         <tr>
             <td>Parkovací místo 1</td>
-            <td>Volno</td>
+            <td class="green">Volno</td>
         </tr>
         <tr>
             <td>Parkovací místo 2</td>
-            <td>Volno</td>
+            <td class="green" >Volno</td>
         </tr>
         <tr>
             <td>Parkovací místo 3</td>
-            <td>Volno</td>
+            <td class="green">Volno</td>
         </tr>
         <tr>
             <td>Parkovací místo 4</td>
-            <td>Volno</td>
+            <td class="green">Volno</td>
         </tr>
         <tr>
             <td>Parkovací místo 5</td>
-            <td>Volno</td>
+            <td class="green">Volno</td>
         </tr>
         <tr>
             <td>Parkovací místo 6</td>
-            <td>Volno</td>
+            <td class="green">Volno</td>
         </tr>
         <tr>
             <th>Počet volných míst</th>
-            <td>6</td>
+            <td class="green">6</td>
         </tr>
         <tr>
             <th>Stav ovzduší</th>
-            <td>Výborný</td>
+            <td class="green">Výborný</td>
         </tr>
         <tr>
             <th>Stav</th>
-            <td>V provozu</td>
+            <td class="green">V provozu</td>
         </tr>
         <tr>
             <th>Ceník</th>
-            <td>Zadarmo</td>
+            <td class="green">Zadarmo</td>
         </tr>
         <tr>
             <th>Počasí</th>
-            <td>Polojasno. Teplo.</td>
+            <td class="green">Polojasno. Teplo.</td>
         </tr>
     </table>
 
